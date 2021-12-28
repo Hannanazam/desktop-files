@@ -1,0 +1,21 @@
+<script>
+    let input1 = document.querySelector("#exampleFormControlInput1");
+    let input2 = document.querySelector("#exampleFormControlInput2");
+    let input3 = document.querySelector("#exampleFormControlTextarea1");
+    let button = document.querySelector("#sendbutton");
+
+    button.disabled = true;
+
+    input1.addEventListener("change", stateHandle);
+    input2.addEventListener("change", stateHandle);
+    input3.addEventListener("change", stateHandle);
+
+    function stateHandle() {
+      if (document.querySelector("#exampleFormControlInput1").value === "" || document.querySelector("#exampleFormControlInput2").value === "" || document.querySelector("#exampleFormControlTextarea1").value === "") {
+        button.disabled = true;
+      } else {
+        button.disabled = false;
+      }
+    }
+
+  </script>

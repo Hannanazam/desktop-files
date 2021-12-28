@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEHRAN COMMERCIAL </title>
+    <link rel="icon" href="{{ asset('assets/img/logo.ico') }}" type="image/gif" sizes="16x16">
+
+</head>
+
+<body>
+<div class="container">
+    <br><br>
+    <div class="row_table">
+        <div class="col-md-6_table">
+            <h3>Delivery Challan</h3>
+        </div>
+        <div class="col-md-6_table text-right_table">
+            <a value='Print' style="color:white" onclick='printDiv();' class="btn btn-success"><i class="fa fa-print" ></i> Print</a>
+        </div>
+    </div>
+</div>
+@php
+    $delivery_order=App\Model\delivery_order::find($id);
+    // $delivery_order_detail=App\Model\delivery_order_detail::where('delivery_order_id',$id)->get();
+    $delivery_order_detail = App\Model\delivery_order_detail::where('delivery_order_id', $id)->join('product', 'delivery_order_detail.product_id', '=', 'product.id')->orderBy('product.sequence', 'asc')->get();
+
+@endphp
+<div id="DivPrint">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{asset('admin/css/hannan.css')}}">
+    <br>
+    <page size="A4">
+    <div class="container seta4size">
+        <div class="main_container">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="header_main setpadding">
+                            <div class="text-center_table">
+                            <h4 class="mb-1_table" style="text-decoration:underline;font-size: 1.5rem;"><strong>Delivery
+                                            Challan</strong></h4>
+                                <h3 class="mb-1_table" style="text-transform: uppercase">Mehran Commercial Enterprise</h3>
+                                <h6>LE-24/A-01, Korangi Creek Industrial, Park Karachi</h6>
+                                <!-- <hr> -->
+                            </div>
+</div>
+<div class="row_table">
+                            <div class="col-md-6_table borderset">
+                                <p class="font-weight-bold mb-1_table">OEM: {{$delivery_order->oems->title}}</p>
+                                <p class="font-weight-bold mb-1_table">Address: {{$delivery_order->oems->location}}</p>
+                                <p class="font-weight-bold mb-1_table">Karachi</p>
+
+                                <!-- <hr> -->
+                            </div>
+                            <div class="col-md-6_table text-right_table borderset">
+                                <!-- <div class="row_table"> -->
+                                <p class="font-weight-bold mb-1_table">Delivery Challen No : CH{{$delivery_order->delivery_order_no}}</p>
+                                <p class="font-weight-bold mb-1_table">DC Date #{{$delivery_order->delivery_date}}</p>
+                                <p class="font-weight-bold mb-1_table">Purchase Order No: {{$delivery_order->delivery_order_no}}</p>
+                                <!-- <hr> -->
+                            </div>
+</div>
+                            <div class="px-0 text-center_table table_main">
+                                <table class="table_table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="border text-uppercase font-weight-bold">Sequence</th>
+                                            <th class="border text-uppercase font-weight-bold">DI No</th>
+                                            <th class="border text-uppercase font-weight-bold">Item Code</th>
+                                            <th class="border text-uppercase font-weight-bold">Part No</th>
+                                            <th class="border text-uppercase font-weight-bold" >Description</th>
+                                            <th class="border text-uppercase font-weight-bold">Qty/Pack</th>
+                                            <th class="border text-uppercase font-weight-bold">No OF Tags</th>
+                                            <th class="border text-uppercase font-weight-bold">Total Quantity</th>
+                                            <th class="border text-uppercase font-weight-bold" >Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($delivery_order_detail as $key=>$r)
+                                        <tr>
+                                            <td>{{$r->product->sequence}}</td>
+                                            <td>{{$r->di_slip}}</td>
+                                            <td>{{$r->product->oem_code}}</td>
+                                            <td>{{$r->product->oem_no}}</td>
+                                            <td>{{$r->product->oem_name}}</td>
+                                            
+                                            <td>{{round($r->actual_quantity)}}</td>
+                                            <td>{{$r->product->bin_qty}}</td>
+                                            <td>{{$r->product->bin_qty*round($r->actual_quantity)}}</td>
+                                            
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br><hr>
+                        <div class="row_table" >
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 text-right_table">
+                                <p>for MEHRAN COMMERCIAL ENTERPRISES</p><br>
+                                <p>Authorized Signatory</p>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <!-- <div class="d-flex_table flex-row-reverse text-white p-4" style="background-color: #112432">
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+    </div>
+
+</page>
+
+</div>
+<script>
+    function printDiv()
+    {
+
+        var divToPrint=document.getElementById('DivPrint');
+
+        var newWin=window.open('','Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><link rel="stylesheet" href="{{asset('admin/css/hannan.css')}}"><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+        newWin.document.close();
+
+
+    }
+</script>
+</body>
+</html>

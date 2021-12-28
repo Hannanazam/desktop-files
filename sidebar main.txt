@@ -1,0 +1,73 @@
+   <div class="detail_descript_container display_block_md">
+                        <div class="detail_descript_main">
+                            <p>{{$product->title}}</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="#">{{$product->title}}</a>
+                                <div class="d-flex icons">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                    <a href="#"><i class="far fa-envelope"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="detail_descript_text">
+                            <p><span class="selected_name">Legs :</span>
+                                <span class="selected_value">Coco walnut</span></p>
+                            <div class="boxed">
+                                <input type="radio" id="android1" name="skills" value="Android Development">
+                                <label for="android1">Coco walnut</label>
+
+                                <input type="radio" id="ios1" name="skills" value="iOS Development">
+                                <label for="ios1">Coco walnuts </label>
+
+                            </div>
+                            <!-- <button class="btn">Coco wallnut</button> -->
+                        </div>
+                        <div class="detail_descript_text">
+                            <p><span class="selected_name">Color :</span>
+                                <span class="selected_value">Caribbean turquoise-Chenille</span></p>
+                            <img src="asset/images/color-img.png" alt="">
+                        </div>
+                        <div class="detail_descript_text mt-4">
+                            <p><span class="selected_name">MRP :</span>
+                                <span class="selected_price">Rs. 53,222.57</span></p>
+                        </div>
+                        <div class="detail_descript_text mt-4">
+                            <div class="d-flex">
+                                <p><span class="selected_name">Quantity :</span></p>
+                                <nav>
+                                <div class="counter">
+  <span class="down" onClick='decreaseCount(event, this)'>-</span>
+  <input type="text" value="1" disabled>
+  <span class="up" onClick='increaseCount(event, this)'>+</span>
+</div>
+                                </nav>
+                            </div>
+                            <div class="d-flex cart_btn">
+                                <button class="btn2">Add to cart</button>
+                                <button class="btn1 ml-4">Buy it now</button>
+                            </div>
+                        </div>
+                        <div class="detail_descript_text mt-4">
+                            <p><a class="wishlist" href="">Add to Wishlist</a></p>
+                        </div>
+                        <div class="detail_descript_text delivery_time">
+                            <p><span class="selected_name">🚚    Delivery between</span>
+                                <span class="selected_value">15 Sep, 21 and 22 Sep, 21</span></p>
+                            <p>For scheduling delivery for a later date, please contact care@livspacestore.com to check feasibility</p>
+                        </div>
+                        <div class="detail_Delivery_option">
+                            <div class="d-flex">
+                                <i class="fa fa-truck mr-5"></i><p>DELIVERY OPTIONS</p>
+                            </div>
+                            <form>
+                                <div class="form-group d-flex">
+                                    <input type="email" class="form-control shadow-none" id="exampleInputEmail1" placeholder="Enter your zipcode" aria-describedby="emailHelp">
+                                    <button type="submit" class="btn btn-primary">Check</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>

@@ -1,0 +1,7 @@
+first name= Muhammad
+Last name= Hannan
+Postalcode = 72800
+Email = hannanazam200@gmail.com	
+Wordpress.com Username = MuhammadHannan
+Account Username = Muhammad Hannan
+Password = Linuxcode123?

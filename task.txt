@@ -1,0 +1,10 @@
+Dashboard campaign (remove)
+
+Product
+	Manage Product
+	Add Product (taken from admin panel)
+	Manage Product
+
+Orders
+	Manage Orders
+	Manage Reviews

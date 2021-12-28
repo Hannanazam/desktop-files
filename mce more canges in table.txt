@@ -1,0 +1,5 @@
+td font-size:10px;
+th font-size:12px;
+buttons border/background-color:#4c4c4c;,font-size:11px;
+
+add title on th

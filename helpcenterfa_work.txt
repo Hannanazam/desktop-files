@@ -1,0 +1,364 @@
+@php
+
+$company=App\Company::first();
+@endphp
+<!doctype html>
+<html lang="en" class="no-focus">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>{{$company->name}}</title>
+
+    <meta name="description" content="{{$company->name}} created by SpaceShiptech">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="{{$company->name}}">
+    <meta property="og:site_name" content="Codebase">
+    <meta property="og:description" content="{{$company->name}} created by SpaceShiptech">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="{{asset($company->favicon)}}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{asset($company->favicon)}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset($company->favicon)}}">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="{{asset('admin/assets/js/plugins/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/js/plugins/slick/slick-theme.css')}}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Fonts and Codebase framework -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700&display=swap">
+    <link rel="stylesheet" id="css-main" href="{{asset('admin/assets/css/codebase.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <link rel="stylesheet" href="{{asset('admin/assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+    .input-group .input-group-append span.input-group-text:hover {
+        background: #428cdf;
+        border-color: #428cdf;
+        transition: .5s;
+    }
+
+    .input-group .input-group-append span.input-group-text {
+        transition: .5s;
+        background: #2e4763;
+        cursor: pointer;
+        color: #fff;
+        border-color: #2e4763;
+        padding: 10px 50px;
+        font-size: 20px;
+    }
+
+    .form-control {
+        padding: 20px;
+    }
+
+    .main_content_help {
+        padding: 20px 50px;
+    }
+
+    .questions a:hover {
+        color: #3f9ce8;
+    }
+
+    .questions a {
+        color: #444;
+    }
+
+    .questions li {
+        margin-bottom: 15px;
+    }
+
+    .main_heading p {
+        position: relative;
+    }
+
+    .main_heading p:after {
+        display: block;
+        content: ' ';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: #2e4763;
+        left: 50%;
+        bottom: -5px;
+        transform: translateX(-50%);
+    }
+
+    .block.bg-transparent .block-content p {
+        margin-bottom: 0px;
+    }
+
+    .block.bg-transparent .block-content {
+        padding: 20px;
+    }
+
+    .block.bg-transparent {
+        border: 1px solid #d5d5d5;
+        border-radius: 5px;
+        height:200px;
+    }
+
+    .still_need_section .content_box.mt-10 {
+        padding-left: 80px;
+    }
+
+    .still_need_section img.img-avatar {
+        border-radius: 0px;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    }
+
+    .block-content.block-content-full.clearfix {
+        box-shadow: 0 1px 12px 0 rgb(0 0 0 / 9%);
+    }
+
+    .set_input_position {
+        position: absolute;
+        top: 100px;
+        left: 350px;
+    }
+
+    .block-header.block-header-default h3 {
+        color: #fff;
+    }
+
+    .block-header.block-header-default {
+        background-color: #1F1F1F;
+    }
+
+    .left_side_bar .block-content {
+        padding: 0px;
+    }
+
+    .left_side_bar .block {
+        margin: 0px 30px;
+    }
+
+    .left_side_bar .list-group-item p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0px;
+    }
+
+    .left_side_bar .list-group-item {
+        border-radius: 0px;
+        background: #393939;
+        border-color: #393939;
+        color: #fff;
+    }
+
+    .left_side_bar .list-group-item.active {
+        border-color: #393939;
+        background: #393939;
+        color: #fff;
+    }
+
+    .left_side_bar .hide_child_to_open .list-group-item {
+        background: #474747;
+        padding-left: 40px
+    }
+
+    .add_class_rotate.rotate {
+        transform: rotate(180deg);
+    }
+
+    .breadcrumb-item {
+        color: #00000075;
+    }
+
+    .breadcrumb-item+.breadcrumb-item::before {
+        content: "/";
+    }
+
+    .child_link a:hover {
+        color: #000;
+    }
+    
+    .child_link a {
+        font-weight:400;
+        color: #6c757d;
+    }
+
+    @media (max-width:992px) {
+
+        .set_input_position {
+            top: 60px;
+            left: 230px;
+        }
+    }
+
+    @media (max-width:765px) {
+        .hide-on-mble {
+            display: none;
+        }
+
+        .main_content_help {
+            padding: 20px 5px;
+        }
+
+    }
+</style>
+
+<body>
+
+    <div class="block mb-0">
+        <ul class="nav nav-tabs nav-tabs-alt justify-content-end js-tabs-enabled container py-10" data-toggle="tabs"
+            role="tablist">
+            <li class="nav-item mr-auto">
+                <h4 class="font-bold m-10 text-muted">Seller Help Center</h4>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#btabs-alt-static2-home">Homepage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#btabs-alt-static2-profile">FAQ</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="hide-on-mble">
+        <div class="input-group w-50 m-auto py-50">
+            <input type="search" class="form-control" id="example-input2-group1" name="example-input2-group1"
+                placeholder="Search for a question..!">
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fal fa-search"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="main_content_help">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 h-auto">
+                    <div class="left_side_bar">
+                        <div class="block">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Categories</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="list-group push">
+                                    <div class="main_links">
+                                    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center active hide_parent_to_open"
+                                        href="javascript:void(0)">
+                                        <p>Announcements & Campaigns</p>
+                                        <i class="fas fa-chevron-down add_class_rotate"></i>
+                                    </a>
+                                    <div class="hide_child_to_open">
+                                        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hide_to_open_container"
+                                            href="javascript:void(0)">
+                                            Announcement
+                                        </a>
+                                        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hide_to_open_container"
+                                            href="javascript:void(0)">
+                                            11.11
+                                        </a>
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="main_links">
+                                    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center active hide_parent_to_open"
+                                        href="javascript:void(0)">
+                                        <p>Sell On Daraz</p>
+                                        <i class="fas fa-chevron-down add_class_rotate"></i>
+                                    </a>
+                                    <div class="hide_child_to_open">
+                                        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hide_to_open_container"
+                                            href="javascript:void(0)">
+                                            Announcement
+                                        </a>
+                                        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hide_to_open_container"
+                                            href="javascript:void(0)">
+                                            11.11
+                                        </a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 h-auto">
+                    <div class="right_side_bar">
+
+                        <div class="block p-5">
+                            <div class="container-fluid">
+                                <h4 class="font-bold m-10 text-muted">All Categories</h4>
+                                <div class="row hide_to_open_container_child">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="block block-link-shadow bg-transparent">
+                                            <div class="block-content">
+                                                <h5 class="font-w400 mb-5">Announcements & Campaigns</h5>
+                                                <p class="font-w600 child_link">
+                                                    <a href="">Announcement </a> | <a href=""> 11.11</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="block block-link-shadow bg-transparent">
+                                            <div class="block-content">
+                                                <h5 class="font-w400 mb-5">Sell On Daraz</h5>
+                                                <p class="font-w600 child_link">
+                                                    <a href="">Seller Signup</a> 
+| <a href=""> Product and Pricing</a>
+| <a href=""> Account Management</a>
+| <a href=""> Order Packaging & Fulfillment</a>
+| <a href=""> Store Builder Guide</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @yield('js')
+    <script>
+        $(document).ready(function () {
+            $(".hide_child_to_open").hide();
+            $(".hide_parent_to_open").click(function () {
+                $(this).next(".hide_child_to_open").slideToggle("fast");
+                $(this).find(".add_class_rotate").toggleClass("rotate");
+            });
+
+        });
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+            $(".hide_to_open_container_child").hide();
+            $(this).find(".hide_to_open_container").click(function () {
+                $(this).next(".hide_to_open_container_child").fadeToggle("fast");
+            });
+
+        });
+    </script> -->
+</body>
+
+</html>

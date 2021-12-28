@@ -1,0 +1,15 @@
+Landing_page =>> 
+logo
+navigation
+scroll hide on mobile
+footer
+footer jquery conflict
+slider issues
+
+incremental category=>>
+cards
+sideimages mobile size issue
+
+
+cart=>>
+liabrary images inline
